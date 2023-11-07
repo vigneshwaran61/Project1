@@ -1,0 +1,59 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blossom calci</title>
+    <link rel="stylesheet" href="{% static 'main.css'%}">
+</head>
+<body>
+    <header>
+    <div class="header">
+        <h1><i>BLOSSOM</i> <i>CALCI</i></h1>
+    </div>
+    </header>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{%url 'about'%}">About</a>
+        <a href="#">Contact</a>
+      </div>
+        <div class="menu">
+            <span  style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+     </div>
+      
+      <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+      </script>
+     <a href="{% url 'multi'%}"><div class="cal1">
+        <h1 style="color:aqua">MULTIPLICATIVE
+          <BR>
+          INVERSE
+          <br>
+          (example:<br>43^-1 X 23 &#9776 1 mod 26)
+        </h1>
+      </div></a>
+      <a href="{%url 'dsa_al'%}"><div class="cal1">
+        <h1 style="color:aqua">Digital
+          Signature
+          <br>
+          (example:<br>Finding 'y' or verification(v=r))
+        </h1>
+      </div></a>
+      <div class="cal1">
+        <h1>
+            hello
+        </h1>
+      </div>
+      <div class="about"> <emp style="color:white">Work By <i style="color:aqua">Prince X Tansil:</i></emp><br>
+        <emp style="color:lawngreen">"You Can't Discover The Beauty Of The Flower, Until<br> You Know In Which Way You Need To See"</emp></div>
+     
+
+</body>
+</html>
