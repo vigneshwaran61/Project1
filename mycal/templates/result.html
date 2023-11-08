@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        div {
+            margin: 50px 350px 90px;
+            padding-left: 100px;
+            width: 700px;
+             color:  rgb(22, 238, 238);
+             background-color: black;
+            border:solid;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            font-size: x-large;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>
+             DIGITAL SIGNATURE:
+        </h1>
+        <p>
+            global components:<br>p={{p}}<br>q={{q}}<br><hr>
+            global component(g):<br>
+            {% if g_f != 0 %}
+            <p> The global component g is not given , so:<br>
+                g=h<sup>(p-1)/q</sup> mod p<br> g={{h}}<sup>({{p}}-1)/{{q}}</sup> % {{p}}<br>
+                g={{g}}
+            </p>
+            {% else %}
+            <p> Given,g={{g}}</p>
+            {% endif %}
+            <hr>
+            key generation:<br>
+            {% if x_f != 0 %}
+            <p>The value x is not given !<br>generated x ={{x}}</p>
+            {% else %}
+            public key:  Given , x={{x}}<br>
+            {% endif %}
+            {% if y_f != 0%}
+            <p>The value y is not given !<br>generated y ={{y}}</p></p>
+            {% else %}
+            private key: y={{y}}<br>
+            {% endif %}
+            <hr>
+            signature components:<br><br>
+            r=(g<sup>k</sup> modp) mod q<br>
+            r=({{g}}<sup>{{k}}</sup> %{{p}})%{{q}}<br>
+            r={{r}}<br>
+            s=(k<sup>-1</sup>[H(M)+(x*r)]) mod q<br>
+            s=({{k}}<sup>-1</sup>[{{h}}+({{x}}*{{r}})]) % {{q}}<br>
+            Note:  finding ({{k}}<sup>-1</sup> % {{q}}) first,<br>
+            ={{k_inv}}<br>
+            s=({{k_inv}}[{{h}}+({{x}}*{{r}})]) % {{q}}<br>
+            s={{s}}<br>
+            sig=[r,s]<br><hr>
+            Verification Process:<br>
+            w=(s<sup>-1</sup> mod q)<br>
+            w=({{s}}<sup>-1</sup> % {{Q}})<br>
+            w={{w}}<br>
+            U1=(H(M<sup>'</sup>) * w)mod q<br>
+            U1=({{h}}*{{w}}) % {{q}}<br>
+            U1={{u1}}<br>
+            U2=(r<sup>'</sup>*w) mod q<br>
+            U2=({{r}}*{{w}}) % {{q}}<br>
+            U2={{u2}}<br>
+            v=(g<sup>U1</sup> y<sup>U2</sup> mod p)mod q<br>
+            v=({{g}}<sup>{{u1}}</sup> {{y}}<sup>{{u2}}</sup> %{{p}}) % {{q}}<br>
+            v={{v}}<br>
+            test=(v=r<sup>'</sup>)<br>
+            test=({{v}}={{r}})<br>
+            {% if v == r %}
+            <p>Digital Signature is verified ! (v=r)</p>
+            {% else %}
+            <p>Digital Signature is not verified ! (v!=r)</p>
+            {% endif %}
+        </p>
+    </div>
+
+</body>
+</html>
